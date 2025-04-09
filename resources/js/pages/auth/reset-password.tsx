@@ -37,7 +37,7 @@ export default function ResetPassword({ token, email }: ResetPasswordProps) {
 
     return (
         <AuthLayout title="Đặt lại mật khẩu" description="Vui lòng nhập mật khẩu mới của bạn">
-            <Head title="Reset password" />
+            <Head title="Đặt lại mật khẩu" />
 
             <form onSubmit={submit}>
                 <div className="grid gap-6">

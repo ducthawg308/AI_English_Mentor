@@ -23,7 +23,7 @@ export default function ForgotPassword({ status }: { status?: string }) {
 
     return (
         <AuthLayout title="Quên mật khẩu" description="Nhập email của bạn để nhận liên kết đặt lại mật khẩu">
-            <Head title="Forgot password" />
+            <Head title="Quên mật khẩu" />
 
             {status && <div className="mb-4 text-center text-sm font-medium text-green-600">{status}</div>}
 

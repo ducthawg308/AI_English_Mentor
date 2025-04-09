@@ -27,7 +27,7 @@ export default function ConfirmPassword() {
             title="Confirm your password"
             description="Đây là khu vực an toàn của ứng dụng. Vui lòng xác nhận mật khẩu của bạn trước khi tiếp tục."
         >
-            <Head title="Confirm password" />
+            <Head title="Xác nhận mật khẩu" />
 
             <form onSubmit={submit}>
                 <div className="space-y-6">
@@ -50,7 +50,7 @@ export default function ConfirmPassword() {
                     <div className="flex items-center">
                         <Button className="w-full" disabled={processing}>
                             {processing && <LoaderCircle className="h-4 w-4 animate-spin" />}
-                            Confirm password
+                            Xác nhận mật khẩu
                         </Button>
                     </div>
                 </div>

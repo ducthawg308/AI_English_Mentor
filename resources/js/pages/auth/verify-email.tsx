@@ -18,7 +18,7 @@ export default function VerifyEmail({ status }: { status?: string }) {
 
     return (
         <AuthLayout title="Xác minh email" description="Vui lòng xác minh địa chỉ email của bạn bằng cách nhấp vào liên kết mà chúng tôi vừa gửi qua email cho bạn.">
-            <Head title="Email verification" />
+            <Head title="Xác minh Email" />
 
             {status === 'verification-link-sent' && (
                 <div className="mb-4 text-center text-sm font-medium text-green-600">

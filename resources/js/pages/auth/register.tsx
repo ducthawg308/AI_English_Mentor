@@ -33,7 +33,7 @@ export default function Register() {
 
     return (
         <AuthLayout title="Đăng ký" description="Chào mừng đến với AI English Mentor">
-            <Head title="Register" />
+            <Head title="Đăng ký" />
             <form className="flex flex-col gap-6" onSubmit={submit}>
                 <div className="grid gap-6">
                     <div className="grid gap-2">
