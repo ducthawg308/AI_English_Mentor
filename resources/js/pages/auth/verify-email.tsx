@@ -5,7 +5,7 @@ import { FormEventHandler } from 'react';
 
 import TextLink from '@/components/text-link';
 import { Button } from '@/components/ui/button';
-import AuthLayout from '@/layouts/auth-layout';
+import AuthSplitLayout from '@/layouts/auth/auth-split-layout';
 
 export default function VerifyEmail({ status }: { status?: string }) {
     const { post, processing } = useForm({});
@@ -17,7 +17,7 @@ export default function VerifyEmail({ status }: { status?: string }) {
     };
 
     return (
-        <AuthLayout title="Xác minh email" description="Vui lòng xác minh địa chỉ email của bạn bằng cách nhấp vào liên kết mà chúng tôi vừa gửi qua email cho bạn.">
+        <AuthSplitLayout title="Xác minh email" description="Vui lòng xác minh địa chỉ email của bạn bằng cách nhấp vào liên kết mà chúng tôi vừa gửi qua email cho bạn.">
             <Head title="Xác minh Email" />
 
             {status === 'verification-link-sent' && (
@@ -36,6 +36,6 @@ export default function VerifyEmail({ status }: { status?: string }) {
                     Đăng xuất
                 </TextLink>
             </form>
-        </AuthLayout>
+        </AuthSplitLayout>
     );
 }

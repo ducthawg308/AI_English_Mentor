@@ -8,7 +8,7 @@ import TextLink from '@/components/text-link';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import AuthLayout from '@/layouts/auth-layout';
+import AuthSplitLayout from '@/layouts/auth/auth-split-layout';
 
 export default function ForgotPassword({ status }: { status?: string }) {
     const { data, setData, post, processing, errors } = useForm<Required<{ email: string }>>({
@@ -22,7 +22,7 @@ export default function ForgotPassword({ status }: { status?: string }) {
     };
 
     return (
-        <AuthLayout title="Quên mật khẩu" description="Nhập email của bạn để nhận liên kết đặt lại mật khẩu">
+        <AuthSplitLayout title="Quên mật khẩu" description="Nhập email của bạn để nhận liên kết đặt lại mật khẩu">
             <Head title="Quên mật khẩu" />
 
             {status && <div className="mb-4 text-center text-sm font-medium text-green-600">{status}</div>}
@@ -55,9 +55,9 @@ export default function ForgotPassword({ status }: { status?: string }) {
 
                 <div className="text-muted-foreground space-x-1 text-center text-sm">
                     <span>Hoặc, quay lại trang</span>
-                    <TextLink href={route('login')}>log in</TextLink>
+                    <TextLink href={route('login')}>Đăng nhập</TextLink>
                 </div>
             </div>
-        </AuthLayout>
+        </AuthSplitLayout>
     );
 }

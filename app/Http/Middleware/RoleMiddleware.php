@@ -19,7 +19,6 @@ class RoleMiddleware
     {
         if(!Auth::check() || !in_array(Auth::user()->role,$roles))
         {
-            // return response()->view('errors.unauthorized');
             return Inertia::render('errors/NotFound')->toResponse($request)->setStatusCode(404);
         }
         return $next($request);

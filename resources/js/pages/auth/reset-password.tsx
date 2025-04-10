@@ -6,7 +6,7 @@ import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import AuthLayout from '@/layouts/auth-layout';
+import AuthSplitLayout from '@/layouts/auth/auth-split-layout'; 
 
 interface ResetPasswordProps {
     token: string;
@@ -36,7 +36,7 @@ export default function ResetPassword({ token, email }: ResetPasswordProps) {
     };
 
     return (
-        <AuthLayout title="Đặt lại mật khẩu" description="Vui lòng nhập mật khẩu mới của bạn">
+        <AuthSplitLayout title="Đặt lại mật khẩu" description="Vui lòng nhập mật khẩu mới của bạn">
             <Head title="Đặt lại mật khẩu" />
 
             <form onSubmit={submit}>
@@ -89,10 +89,10 @@ export default function ResetPassword({ token, email }: ResetPasswordProps) {
 
                     <Button type="submit" className="mt-4 w-full" disabled={processing}>
                         {processing && <LoaderCircle className="h-4 w-4 animate-spin" />}
-                        Reset password
+                        Đặt lại mật khẩu
                     </Button>
                 </div>
             </form>
-        </AuthLayout>
+        </AuthSplitLayout>
     );
 }

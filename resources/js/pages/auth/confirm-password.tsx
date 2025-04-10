@@ -7,7 +7,7 @@ import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import AuthLayout from '@/layouts/auth-layout';
+import AuthSplitLayout from '@/layouts/auth/auth-split-layout';
 
 export default function ConfirmPassword() {
     const { data, setData, post, processing, errors, reset } = useForm<Required<{ password: string }>>({
@@ -23,10 +23,7 @@ export default function ConfirmPassword() {
     };
 
     return (
-        <AuthLayout
-            title="Confirm your password"
-            description="Đây là khu vực an toàn của ứng dụng. Vui lòng xác nhận mật khẩu của bạn trước khi tiếp tục."
-        >
+        <AuthSplitLayout title="Xác nhận mật khẩu của bạn" description="Đây là khu vực an toàn của ứng dụng. Vui lòng xác nhận mật khẩu của bạn trước khi tiếp tục.">
             <Head title="Xác nhận mật khẩu" />
 
             <form onSubmit={submit}>
@@ -37,7 +34,7 @@ export default function ConfirmPassword() {
                             id="password"
                             type="password"
                             name="password"
-                            placeholder="Password"
+                            placeholder="Nhập mật khẩu"
                             autoComplete="current-password"
                             value={data.password}
                             autoFocus
@@ -55,6 +52,6 @@ export default function ConfirmPassword() {
                     </div>
                 </div>
             </form>
-        </AuthLayout>
+        </AuthSplitLayout>
     );
 }
