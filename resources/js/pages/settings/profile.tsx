@@ -14,7 +14,7 @@ import SettingsLayout from '@/layouts/settings/layout';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Profile settings',
+        title: 'Cài đặt hồ sơ',
         href: '/settings/profile',
     },
 ];
@@ -42,7 +42,7 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Cài đặt tài khoản" />
+            <Head title="Cài đặt hồ sơ" />
 
             <SettingsLayout>
                 <div className="space-y-6">

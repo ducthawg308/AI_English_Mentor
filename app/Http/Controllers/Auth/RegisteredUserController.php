@@ -42,13 +42,10 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        // Trigger the Registered event to send the verification email
         event(new Registered($user));
+        
+        Auth::login($user);
 
-        // Don't log the user in automatically
-        // Auth::login($user);
-
-        // Redirect to the verification notice page
         return to_route('verification.notice');
     }
 }
