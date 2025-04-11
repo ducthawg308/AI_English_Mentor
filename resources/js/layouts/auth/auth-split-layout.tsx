@@ -19,11 +19,11 @@ export default function AuthSplitLayout({ children, title, description }: PropsW
                 <div className="relative z-1">
                     <GridShape />
                     <div className="flex flex-col items-center max-w-xs">
-                        <Link href="/" className="block mb-4">
+                        <Link href="/" className="block mb-2">
                             <img
-                                width={231}
+                                width={200}
                                 height={48}
-                                src="/images/logo/auth-logo.svg"
+                                src="/images/logo/logodtu.svg"
                                 alt="Logo"
                             />
                         </Link>
