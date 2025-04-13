@@ -9,7 +9,7 @@ import {
 import Badge from "../ui/badge/Badge";
 import { Pencil, Trash2 } from 'lucide-react';
 
-interface Order {
+interface Users {
   id: number;
   user: {
     image: string;
@@ -21,7 +21,7 @@ interface Order {
 }
 
 // Define the table data using the interface
-const tableData: Order[] = [
+const tableData: Users[] = [
   {
     id: 1,
     user: {
@@ -117,8 +117,8 @@ export default function BasicTableOne() {
 
           {/* Table Body */}
           <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
-            {tableData.map((order, index) => (
-              <TableRow key={order.id}>
+            {tableData.map((user, index) => (
+              <TableRow key={user.id}>
                 <TableCell className="px-5 py-4 sm:px-6 text-start text-gray-700 text-theme-sm dark:text-gray-300">
                   {index + 1}
                 </TableCell>
@@ -128,35 +128,35 @@ export default function BasicTableOne() {
                       <img
                         width={40}
                         height={40}
-                        src={order.user.image}
-                        alt={order.user.name}
+                        src={user.user.image}
+                        alt={user.user.name}
                       />
                     </div>
                     <div>
                       <span className="block font-medium text-gray-800 text-theme-sm dark:text-white/90">
-                        {order.user.name}
+                        {user.user.name}
                       </span>
                       <span className="block text-gray-500 text-theme-xs dark:text-gray-400">
-                        {order.user.role}
+                        {user.user.role}
                       </span>
                     </div>
                   </div>
                 </TableCell>
                 <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
-                  {order.email}
+                  {user.email}
                 </TableCell>
                 <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
                   <Badge
                     size="sm"
                     color={
-                      order.status === "Active"
+                      user.status === "Active"
                         ? "success"
-                        : order.status === "Pending"
+                        : user.status === "Pending"
                         ? "warning"
                         : "error"
                     }
                   >
-                    {order.status}
+                    {user.status}
                   </Badge>
                 </TableCell>
                 <TableCell className="px-4 py-3 text-start">
