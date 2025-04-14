@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\UsersController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -13,7 +13,7 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
 
-    Route::get('admin/users',[UserController::class,'index'])->name('admin.users');
+    Route::get('admin/users',[UsersController::class,'index'])->name('admin.users');
 });
 
 require __DIR__.'/settings.php';
