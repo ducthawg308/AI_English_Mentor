@@ -6,9 +6,9 @@ interface User {
   id: number;
   name: string;
   email: string;
-  status: string;
   role: string;
   image: string | null;
+  email_verified_at: string | null;
 }
 
 interface BasicTablesProps {
