@@ -5,7 +5,7 @@ namespace App\Repositories\User;
 use App\Models\User;
 use App\Repositories\BaseRepository;
 
-class UserRepository extends BaseRepository implements UserRepositoryInterface
+class UserRepository extends BaseRepository implements UserInterface
 {
     /**
      * Trả về class model để BaseRepository gọi app()->make()
@@ -16,4 +16,5 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     }
 
     // Có thể bổ sung thêm các hàm đặc thù xử lý User ở đây nếu muốn
+    
 }

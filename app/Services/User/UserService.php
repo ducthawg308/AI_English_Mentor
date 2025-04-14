@@ -3,13 +3,13 @@
 namespace App\Services\User;
 
 use App\Services\BaseService;
-use App\Repositories\User\UserRepositoryInterface;
+use App\Repositories\User\UserInterface;
 
 class UserService extends BaseService implements UserServiceInterface
 {
-    protected UserRepositoryInterface $userRepository;
+    protected UserInterface $userRepository;
 
-    public function __construct(UserRepositoryInterface $userRepository)
+    public function __construct(UserInterface $userRepository)
     {
         $this->userRepository = $userRepository;
     }
