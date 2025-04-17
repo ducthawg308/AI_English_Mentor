@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState, useEffect, useRef } from "react"
 import { Modal } from "./index"
 import Input from "@/components/form/input/InputField"
@@ -15,7 +14,7 @@ interface User {
   name: string
   email: string
   role: string
-  image: string | null
+  avatar: string | null
   email_verified_at: string | null
   password?: string
   password_confirmation?: string
@@ -41,7 +40,7 @@ export default function ModalEditUser({ isOpen, onClose, onSave, user }: ModalEd
     name: "",
     email: "",
     role: "",
-    image: null,
+    avatar: null,
     email_verified_at: null,
     password: "",
     password_confirmation: "",
@@ -68,15 +67,15 @@ export default function ModalEditUser({ isOpen, onClose, onSave, user }: ModalEd
         name: user.name,
         email: user.email,
         role: user.role,
-        image: user.image,
+        avatar: user.avatar,
         email_verified_at: user.email_verified_at,
         password: "",
         password_confirmation: "",
       })
 
       // Cập nhật preview avatar nếu có
-      if (user.image) {
-        setAvatarPreview(user.image)
+      if (user.avatar) {
+        setAvatarPreview(user.avatar)
       } else {
         setAvatarPreview(null)
       }
@@ -86,7 +85,7 @@ export default function ModalEditUser({ isOpen, onClose, onSave, user }: ModalEd
         email: user.email,
         role: user.role,
         status: user.email_verified_at ? "1" : "0",
-        image: user.image,
+        avatar: user.avatar,
       })
     } else {
       // Reset form data
@@ -94,7 +93,7 @@ export default function ModalEditUser({ isOpen, onClose, onSave, user }: ModalEd
         name: "",
         email: "",
         role: "",
-        image: null,
+        avatar: null,
         email_verified_at: null,
         password: "",
         password_confirmation: "",
@@ -195,7 +194,7 @@ export default function ModalEditUser({ isOpen, onClose, onSave, user }: ModalEd
 
   const handleRemoveAvatar = () => {
     setAvatarPreview(null)
-    setFormData({ ...formData, image: null, avatar_file: undefined })
+    setFormData({ ...formData, avatar: null, avatar_file: undefined })
     if (fileInputRef.current) {
       fileInputRef.current.value = ""
     }
@@ -220,6 +219,8 @@ export default function ModalEditUser({ isOpen, onClose, onSave, user }: ModalEd
       password: "",
       password_confirmation: "",
     }))
+
+    console.log("Dữ liệu gửi đi:", dataToSave);
   }
 
   // Lấy giá trị hiện tại cho status select

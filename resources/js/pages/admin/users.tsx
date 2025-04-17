@@ -1,7 +1,8 @@
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
-import BasicTables from '../tables/BasicTables';
+import BasicTables from '../../components/tables/BasicTables';
+import BasicTableUsers from '@/components/tables/users/BasicTableUsers';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -15,23 +16,21 @@ interface UsersProps {
         id: number;
         name: string;
         email: string;
+        email_verified_at: string | null; 
         status: string;
         role: string;
-        image: string | null;
+        avatar: string | null;
     }>;
 }
 
 export default function Users({ users }: UsersProps) {
-    // Kiểm tra xem dữ liệu người dùng có hợp lệ không
-    if (!users || !Array.isArray(users) || users.length === 0) {
-        return <div>Không có dữ liệu người dùng</div>;
-    }
+    console.log('Dữ liệu từ backend:', users);
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Dashboard" />
+            <Head title="Quản lý người dùng" />
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
-                <BasicTables users={users} />
+                <BasicTableUsers users={users} />
             </div>
         </AppLayout>
     );

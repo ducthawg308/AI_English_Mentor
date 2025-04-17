@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 use App\Services\User\UserService;
-use App\Http\Requests\Admin\StoreuserRequest;
-use App\Http\Requests\Admin\UpdateuserRequest;
+use App\Http\Requests\Admin\StoreUserRequest;
+use App\Http\Requests\Admin\UpdateUserRequest;
 use Illuminate\Http\JsonResponse;
 
 class UsersController extends Controller
@@ -34,6 +34,11 @@ class UsersController extends Controller
         try {
             $validated = $request->validated();
 
+            // Thêm file avatar vào dữ liệu nếu có
+            if ($request->hasFile('avatar')) {
+                $validated['avatar'] = $request->file('avatar');
+            }
+
             // Mã hóa password
             $validated['password'] = bcrypt($validated['password']);
 
@@ -54,10 +59,15 @@ class UsersController extends Controller
     /**
      * Cập nhật thông tin user
      */
-    public function update(UpdateuserRequest $request, int $id): JsonResponse
+    public function update(UpdateUserRequest $request, int $id): JsonResponse
     {
         try {
             $validated = $request->validated();
+
+            // Thêm file avatar vào dữ liệu nếu có
+            if ($request->hasFile('avatar')) {
+                $validated['avatar'] = $request->file('avatar');
+            }
 
             // Xử lý password nếu có
             if (isset($validated['password'])) {
