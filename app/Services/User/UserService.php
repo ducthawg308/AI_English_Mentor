@@ -4,43 +4,39 @@ namespace App\Services\User;
 
 use App\Services\BaseService;
 use App\Repositories\User\UserInterface;
+use Illuminate\Support\Facades\Hash;
 
-class UserService extends BaseService implements UserServiceInterface
+class UserService extends BaseService
 {
-    protected UserInterface $userRepository;
-
-    public function __construct(UserInterface $userRepository)
+    public function __construct(UserInterface $repository)
     {
-        $this->userRepository = $userRepository;
+        $this->repository = $repository;
     }
 
-    public function getAll(): mixed
+    public function create(array $data)
     {
-        return $this->userRepository->get();
+        // Mã hóa password nếu có
+        if (isset($data['password'])) {
+            $data['password'] = Hash::make($data['password']);
+        }
+
+        return $this->repository->create($data);
     }
 
-    public function paginate(): mixed
+    public function update($id, array $data)
     {
-        return $this->userRepository->paginate();
+        // Xử lý password nếu có
+        if (isset($data['password'])) {
+            $data['password'] = Hash::make($data['password']);
+        } else {
+            unset($data['password']);
+        }
+
+        return $this->repository->update($id, $data);
     }
 
-    public function findById(int $id): mixed
+    public function find($id)
     {
-        return $this->userRepository->findOrFail($id);
-    }
-
-    public function create(array $data): mixed
-    {
-        return $this->userRepository->create($data);
-    }
-
-    public function update(int $id, array $data): mixed
-    {
-        return $this->userRepository->update($id, $data);
-    }
-
-    public function delete(int $id): bool
-    {
-        return $this->userRepository->delete($id);
+        return $this->repository->find($id);
     }
 }

@@ -2,138 +2,43 @@
 
 namespace App\Repositories;
 
-use Illuminate\Contracts\Container\BindingResolutionException;
+use App\Models\User;
 
-/**
- * Class BaseRepository
- */
 abstract class BaseRepository implements RepositoryInterface
 {
-    protected object $model;
+    protected $model;
 
-    /**
-     * The number of models to return for pagination.
-     */
-    protected int $perPage = 15;
-
-    /**
-     * BaseRepository constructor
-     */
     public function __construct()
     {
-        $this->setModel();
-        // $this->setPerPage(config('const.per_page'));
+        $this->model = app(User::class);
     }
 
-    /**
-     * The abstract method getModel
-     */
-    abstract public function getModel(): string;
-
-    /**
-     * Function setPerPage
-     */
-    public function setPerPage(int $perPage): object
+    public function all()
     {
-        $this->perPage = $perPage;
-
-        return $this;
+        return $this->model->all();
     }
 
-    /**
-     * The setter model
-     *
-     *
-     * @throws BindingResolutionException
-     */
-    public function setModel(): void
+    public function find($id)
     {
-        $this->model = app()->make(
-            $this->getModel()
-        );
+        return $this->model->findOrFail($id);
     }
 
-    /**
-     * The function help get record
-     *
-     * @param  array  $conditions
-     * @param  array  $columns
-     */
-    public function get($conditions = [], $columns = ['*']): mixed
+    public function create(array $data)
     {
-        return $this->model->where($conditions)->select($columns)->get();
+        return $this->model->create($data);
     }
 
-    /**
-     * The function help get record has pagination
-     *
-     * @param  array  $conditions
-     * @param  array  $columns
-     */
-    public function paginate($conditions = [], $columns = ['*']): mixed
+    public function update($id, array $data)
     {
-        return $this->model->where($conditions)->select($columns)->paginate($this->perPage);
+        $record = $this->find($id);
+        $record->update($data);
+        return $record;
     }
 
-    /**
-     * The function help find item by id
-     *
-     * @param  string[]  $columns
-     */
-    public function find(int $id, $columns = ['*']): mixed
+    public function delete($id)
     {
-        return $this->model->find($id, $columns);
-    }
-
-    /**
-     * The function help get find or fail
-     */
-    public function findOrFail($id, array $columns = ['*']): mixed
-    {
-        return $this->model->findOrFail($id, $columns);
-    }
-
-    /**
-     * The function add new record
-     *
-     * @param  array  $attributes
-     */
-    public function create($attributes = []): mixed
-    {
-        $this->model->fill($attributes);
-
-        return $this->model->create($attributes);
-    }
-
-    /**
-     * The function help update record
-     *
-     * @param  array  $attributes
-     * @return false|mixed
-     */
-    public function update($id, $attributes = []): mixed
-    {
-        $result = $this->find($id);
-        if ($result) {
-            $this->model->fill($attributes);
-            $result->update($attributes);
-
-            return $result;
-        }
-
-        return false;
-    }
-
-    /**
-     * The function help delete item
-     */
-    public function delete($id): bool
-    {
-        $result = $this->find($id);
-        if ($result) {
-            return $result->delete();
-        }
-
-        return false;
+        $record = $this->find($id);
+        $record->delete();
+        return true;
     }
 }

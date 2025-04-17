@@ -20,7 +20,7 @@ class UsersController extends Controller
      */
     public function index(): Response 
     {
-        $users = $this->userService->getAll();
+        $users = $this->userService->all();
         return Inertia::render('admin/users', [
             'users' => $users
         ]);
@@ -38,9 +38,6 @@ class UsersController extends Controller
             if ($request->hasFile('avatar')) {
                 $validated['avatar'] = $request->file('avatar');
             }
-
-            // Mã hóa password
-            $validated['password'] = bcrypt($validated['password']);
 
             // Tạo user
             $user = $this->userService->create($validated);
@@ -69,19 +66,12 @@ class UsersController extends Controller
                 $validated['avatar'] = $request->file('avatar');
             }
 
-            // Xử lý password nếu có
-            if (isset($validated['password'])) {
-                $validated['password'] = bcrypt($validated['password']);
-            } else {
-                unset($validated['password']); // Loại bỏ password nếu không thay đổi
-            }
-
             // Cập nhật user
             $this->userService->update($id, $validated);
 
             return response()->json([
                 'message' => 'Cập nhật user thành công',
-                'user' => $this->userService->findById($id)
+                'user' => $this->userService->find($id)
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
@@ -97,7 +87,7 @@ class UsersController extends Controller
     {
         try {
             // Kiểm tra user có tồn tại
-            $user = $this->userService->findById($id);
+            $user = $this->userService->find($id);
 
             // Xóa user
             $this->userService->delete($id);

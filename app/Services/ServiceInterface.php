@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Services;
 
-interface RepositoryInterface
+interface ServiceInterface
 {
     public function all();
     public function find($id);
